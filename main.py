@@ -91,6 +91,38 @@ while opc != 6:
             print("Opção Inválida")
             continue
 
+    elif opc == 5:
+        print("ESTATÍSTICAS: ")
+        print(f"Total de palavras: {len(flashcards)}")
+
+        dificuldade_1 = 0
+        dificuldade_2 = 0
+        dificuldade_3 = 0
+        dificuldade_4 = 0
+        dificuldade_5 = 0
+
+        for card in flashcards:
+            if card["dificuldade"] == 1:
+                dificuldade_1+=1
+
+            elif card["dificuldade"] == 2:
+                dificuldade_2+=1
+
+            elif card["dificuldade"] == 3:
+                dificuldade_3+=1
+
+            elif card["dificuldade"] == 4:
+                dificuldade_4+=1
+
+            elif card["dificuldade"] == 5:
+                dificuldade_5+=1
+
+        print()
+        print(f"Muito fáceis (1): {dificuldade_1}")
+        print(f"Fáceis (2): {dificuldade_2}")
+        print(f"Médio (3): {dificuldade_3}")
+        print(f"Difíceis (4): {dificuldade_4}")
+        print(f"Muito difíceis (5): {dificuldade_5}")
 
 
 
