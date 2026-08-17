@@ -124,7 +124,13 @@ while opc != 6:
         print(f"Difíceis (4): {dificuldade_4}")
         print(f"Muito difíceis (5): {dificuldade_5}")
 
+    elif opc == 6:
+        print("Saindo...")
+        
 
+    else:
+        print("Opção Inválida")
+        
 
 
 
