@@ -1,7 +1,21 @@
+import json
 import random
-opc = 0
-flashcards = []
 
+opc = 0
+flashcards = carregar_flashcards()
+
+
+def carregar_flashcards():
+    try: 
+        with open("flashcards.json", "r") as arquivo:
+            return json.load(arquivo)
+    except FileNotFoundError:
+        return [] 
+
+
+def salvar_flashcards():
+    with open("flashcards.json", "w") as arquivo:
+        json.dump(flashcards, arquivo) #(o que salvar, onde salvar)
 
 def mostrar_palavras():
         print("LISTA DE PALAVRAS: ")
@@ -24,6 +38,7 @@ while opc != 6:
 
     opc = int(input("Digite a sua opção: "))
     print()
+
 
     if opc == 1:
         tamanho_flashcards = len(flashcards)
@@ -53,6 +68,8 @@ while opc != 6:
 
             card_estudo["dificuldade"] = dificuldade_palavra
 
+            salvar_flashcards()
+
 
         else:
             print("Adicione palavras para estudar!")
@@ -68,6 +85,8 @@ while opc != 6:
 
         flashcards.append(card)
         print()
+
+        salvar_flashcards()
 
 
     elif opc == 3:
@@ -87,6 +106,9 @@ while opc != 6:
 
             del flashcards[indice_remover-1]
             print(f"A palavra: {palavra_removida["palavra"]}, foi removida com sucesso!")
+
+            salvar_flashcards()
+
         else:
             print("Opção Inválida")
             continue
