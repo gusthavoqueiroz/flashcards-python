@@ -2,7 +2,6 @@ import json
 import random
 
 opc = 0
-flashcards = carregar_flashcards()
 
 
 def carregar_flashcards():
@@ -19,9 +18,12 @@ def salvar_flashcards():
 
 def mostrar_palavras():
         print("LISTA DE PALAVRAS: ")
-        for index, palavra in enumerate(flashcards, start=1):
-            print(f'{index}. {palavra["palavra"]} - {palavra["traducao"]} - {palavra["dificuldade"]}')
+        for index, card in enumerate(flashcards, start=1):
+            print(f'{index}. {card["palavra"]} - {card["traducao"]} - {card["dificuldade"]}')
         print()
+
+
+flashcards = carregar_flashcards()
 
 
 while opc != 6:
@@ -44,7 +46,16 @@ while opc != 6:
         tamanho_flashcards = len(flashcards)
 
         if tamanho_flashcards > 0:
-            card_estudo = random.choice(flashcards)
+
+            cards_estudos = []
+
+            # Repete os cards conforme a dificuldade
+            for card in flashcards:
+                for _ in range(card["dificuldade"]):
+                    cards_estudos.append(card)
+
+            card_estudo = random.choice(cards_estudos)
+
             print(card_estudo["palavra"])
 
             input("Pressione ENTER para ver a tradução")
@@ -102,16 +113,17 @@ while opc != 6:
         tamanho_flashcards = len(flashcards)
         if tamanho_flashcards >= indice_remover and indice_remover >= 1:
 
-            palavra_removida = flashcards[indice_remover-1]
+            card_removido = flashcards[indice_remover-1]
 
             del flashcards[indice_remover-1]
-            print(f"A palavra: {palavra_removida["palavra"]}, foi removida com sucesso!")
+            print(f"A palavra: {card_removido["palavra"]}, foi removida com sucesso!")
 
             salvar_flashcards()
 
         else:
             print("Opção Inválida")
             continue
+
 
     elif opc == 5:
         print("ESTATÍSTICAS: ")
