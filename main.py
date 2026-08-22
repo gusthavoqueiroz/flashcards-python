@@ -38,8 +38,14 @@ while opc != 6:
     print("6. Sair")
     print()
 
-    opc = int(input("Digite a sua opção: "))
-    print()
+    try:
+        opc = int(input("Digite a sua opção: "))
+        print()
+
+    except ValueError:
+        print("Digite um número válido")
+        continue
+
 
 
     if opc == 1:
