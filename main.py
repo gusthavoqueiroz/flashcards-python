@@ -77,20 +77,36 @@ while opc != 6:
 
             """)
 
-            dificuldade_palavra = int(input("Resposta: "))
 
-            while dificuldade_palavra > 5 or dificuldade_palavra < 1:
-                print("Opção Inválida!")
-                dificuldade_palavra = int(input("Resposta: "))
+            while True:
+                try:
+                    dificuldade_palavra = int(input("Resposta: "))
+            
+                    if dificuldade_palavra > 5 or dificuldade_palavra < 1:
+                        print("Opção Inválida!")
+                        continue
 
-            card_estudo["dificuldade"] = dificuldade_palavra
+                    break
 
-            salvar_flashcards()
+                except ValueError:
+                    print("Digite um número válido!")
 
 
         else:
             print("Adicione palavras para estudar!")
             continue
+            
+
+        card_estudo["dificuldade"] = dificuldade_palavra
+                                
+        salvar_flashcards()
+
+            
+
+            
+
+
+        
          
 
     elif opc == 2:
