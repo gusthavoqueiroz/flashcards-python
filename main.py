@@ -101,18 +101,28 @@ while opc != 6:
                                 
         salvar_flashcards()
 
-            
-
-            
-
-
-        
-         
 
     elif opc == 2:
+
+        palavra = input("Digite a palavra: ")
+        traducao = input("Digite a tradução: ")
+
+        # strip -> remove espaços do começo e do fim
+        palavra = palavra.strip()
+        traducao = traducao.strip()
+
+
+        if not palavra:
+            print("Opção inválida")
+            continue
+
+        if not traducao:
+            print("Opção inválida")
+            continue
+
         card = {
-            "palavra": input("Digite a palavra: "),
-            "traducao": input("Digite a tradução: "),
+            "palavra": palavra,
+            "traducao": traducao,
             "dificuldade": 3
         }
 
@@ -130,21 +140,31 @@ while opc != 6:
         print("REMOVER PALAVRA:")
         mostrar_palavras()
 
-        indice_remover = int(input("Digite o Número da palavra que deseja remover: "))
+        while True:
+            try:
+                indice_remover = int(input("Digite o Número da palavra que deseja remover: "))
 
-        tamanho_flashcards = len(flashcards)
-        if tamanho_flashcards >= indice_remover and indice_remover >= 1:
+                tamanho_flashcards = len(flashcards)
+                if tamanho_flashcards >= indice_remover and indice_remover >= 1:
 
-            card_removido = flashcards[indice_remover-1]
+                    card_removido = flashcards[indice_remover-1]
 
-            del flashcards[indice_remover-1]
-            print(f"A palavra: {card_removido["palavra"]}, foi removida com sucesso!")
+                    del flashcards[indice_remover-1]
+                    print(f"A palavra: {card_removido["palavra"]}, foi removida com sucesso!")
 
-            salvar_flashcards()
+                    salvar_flashcards()
 
-        else:
-            print("Opção Inválida")
-            continue
+                    break
+
+                else:
+                    print("Opção Inválida")
+                    continue
+                
+            except ValueError:
+                print("Digite um número válido")
+                continue
+
+                
 
 
     elif opc == 5:
