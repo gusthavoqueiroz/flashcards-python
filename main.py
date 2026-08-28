@@ -104,20 +104,58 @@ while opc != 6:
 
     elif opc == 2:
 
-        palavra = input("Digite a palavra: ")
-        traducao = input("Digite a tradução: ")
+        
 
-        # strip -> remove espaços do começo e do fim
-        palavra = palavra.strip()
-        traducao = traducao.strip()
+        # traducao = traducao.strip()
+
+        # if not palavra:
+        #     print("Opção inválida")
+
+        cancelado = False
+
+        while True:
+            palavra = input("Digite a palavra (ou 0 para voltar): ")
+
+            # cancela com "0"
+            if palavra == "0":
+                cancelado = True
+                break
+
+            # repete quando vazio
+            # strip -> remove espaços do começo e do fim
+            palavra = palavra.strip()
+            if not palavra:
+                print("Digite uma palavra válida")
+                continue
+
+            break
 
 
-        if not palavra:
-            print("Opção inválida")
-            continue
+        if cancelado:
+                continue
 
-        if not traducao:
-            print("Opção inválida")
+
+        cancelado = False
+
+        while True:
+            traducao = input("Digite a tradução (ou 0 para voltar): ")
+
+            # Cancela com 0
+            if traducao == "0":
+                cancelado = True
+                break
+
+            # repete quando vazio
+            # strip -> remove espaços do começo e do fim
+            traducao = traducao.strip()
+            if not traducao:
+                print("Digite uma tradução válida")
+                continue
+            
+            break
+
+                
+        if cancelado:
             continue
 
         card = {
