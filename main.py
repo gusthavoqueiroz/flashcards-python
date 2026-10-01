@@ -107,9 +107,9 @@ def adicionar_palavra():
                 break
     
         if cadastrada:
-            continue
+            continue # volta para o loop do while true
                 
-        break
+        break # sai desse loop e vai para o próximo
     
     
     if cancelado:
@@ -189,6 +189,46 @@ def remover_palavra():
             continue
     
 
+def editar_palavra():
+    # verifica se existem flashcards
+    tamanho_flashcards = len(flashcards)
+    
+    if not tamanho_flashcards:
+            print("Não tem nenhuma palavra cadastrada!")
+            return
+
+    print("EDITAR PALAVRA:")
+    # mostrar as palavras;
+    mostrar_palavras()
+
+    while True:
+            try:
+                
+                indice_editar = int(input("Digite o Número da palavra que deseja editar: "))
+
+                if tamanho_flashcards >= indice_editar and indice_editar >= 1:
+
+                    card_editar = flashcards[indice_editar-1]
+
+                    card_editar["palavra"] = input("Digite a palavra corretamente: ")
+
+                    print("A palavra foi editada com sucesso!")
+
+                    salvar_flashcards()
+
+                    break
+
+                else:
+                    print("Opção Inválida")
+                    continue
+
+            except ValueError:
+                print("Digite um número válido")
+                continue
+
+    
+
+
 
 def mostrar_estatisticas():
     print("ESTATÍSTICAS: ")
@@ -266,10 +306,14 @@ while opc != 6:
 
 
     elif opc == 5:
-        mostrar_estatisticas()
+        editar_palavra()
 
 
     elif opc == 6:
+        mostrar_estatisticas()
+
+
+    elif opc == 7:
         print("Saindo...")
         
 
