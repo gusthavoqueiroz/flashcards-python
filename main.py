@@ -210,8 +210,18 @@ def editar_palavra():
 
                     card_editar = flashcards[indice_editar-1]
 
-                    card_editar["palavra"] = input("Digite a palavra corretamente: ")
+                    while True:
+                        palavra = input("Digite a palavra corretamente: ")
 
+                        palavra = palavra.strip()
+                   
+                        if not palavra:
+                            print("Você deve digitar uma palavra!")
+                            continue
+
+                        card_editar["palavra"] = palavra
+                        break
+                    
                     print("A palavra foi editada com sucesso!")
 
                     salvar_flashcards()
